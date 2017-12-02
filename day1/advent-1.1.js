@@ -37,9 +37,7 @@ function advent1(captcha) {
     return sum
   }
   for (var i = 0; i < captcha.length; i++) {
-    // console.log(string[i],string[(i+1) % string.length])
     if (captcha[i] === captcha[(i+1) % captcha.length]) {
-      // console.log("ok", parseInt(string[i]))
       sum += parseInt(captcha[i])
     }
   }
