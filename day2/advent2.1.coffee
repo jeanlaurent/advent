@@ -54,18 +54,16 @@ describe 'advent 2.2', ->
     '''
     expect( advent22 input ).to.equal 9
 
-advent21 = (captcha) ->
-  return 0 unless captcha
+advent21 = (lines) ->
+  return 0 unless lines
   sum = 0
-  lines = captcha.split '\n'
-  for line in lines
-    numbers = line.split ' '
+  for line in lines.split '\n'
+    numbers = line.split(' ').map (number) -> parseInt number
     smallest = 9999
     biggest = -1
     for number in numbers
-      num = parseInt(number)
-      smallest = num if smallest > num
-      biggest = num if biggest < num
+      smallest = number if smallest > number
+      biggest = number if biggest < number
     sum += biggest - smallest
   return sum
 
@@ -75,23 +73,19 @@ divideIfGreater = (a,b) ->
   else
     return divide b, a
 
-
 divide = (a, b) ->
   return a / b if a % b == 0
   0
 
-advent22 = (captcha) ->
-  return 0 unless captcha
+advent22 = (lines) ->
+  return 0 unless lines
   sum = 0
-  lines = captcha.split '\n'
-  for line in lines
+  for line in lines.split '\n'
     numbers = line.split(' ').map (number) -> parseInt number
     for number, i in numbers
       for number2, j in numbers when i < j
         sum += divideIfGreater number, number2
   return sum
-
-
 
 puzzleInput = '''
 4168 3925 858 2203 440 185 2886 160 1811 4272 4333 2180 174 157 361 1555
