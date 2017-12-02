@@ -3,29 +3,29 @@ expect = require('chai').expect
 describe 'advent 2.1', ->
 
   it 'should return 0 when no input', ->
-    expect( advent21()).to.equal(0)
+    expect( advent21() ).to.equal 0
 
   it 'should return 8 when input is 9 1', ->
-    expect( advent21('9 1')).to.equal(8)
+    expect( advent21 '9 1' ).to.equal 8
 
   it 'should return 7 when input is 8 1 3 7 8 4 2', ->
-    expect( advent21('8 1 3 7 8 4 2')).to.equal(7)
+    expect( advent21 '8 1 3 7 8 4 2' ).to.equal 7
 
   it 'should return 8 when input is 5 1 9 5', ->
-    expect( advent21('5 1 9 5')).to.equal(8)
+    expect( advent21 '5 1 9 5' ).to.equal 8
 
   it 'should return 4 when input is 7 5 3', ->
-    expect(advent21('7 5 3')).to.equal(4)
+    expect( advent21 '7 5 3' ).to.equal 4
 
   it 'should return 6 when input is 2 4 6 8', ->
-    expect( advent21('2 4 6 8')).to.equal(6)
+    expect( advent21 '2 4 6 8' ).to.equal 6
 
   it 'should return 15 when input is 9 1 / 8 1', ->
     input = '''
     9 1
     8 1
     '''
-    expect( advent21(input)).to.equal(15)
+    expect( advent21 input ).to.equal 15
 
   it 'should return 15 when input is input from advent', ->
     input = '''
@@ -33,18 +33,18 @@ describe 'advent 2.1', ->
     7 5 3
     2 4 6 8
     '''
-    expect( advent21(input)).to.equal(18)
+    expect( advent21 input ).to.equal 18
 
 describe 'advent 2.2', ->
 
   it 'should return 4 when input is 5 9 2 8', ->
-    expect(advent22('5 9 2 8')).to.equal(4)
+    expect( advent22 '5 9 2 8' ).to.equal 4
 
   it 'should return 3 when input is 9 4 7 3', ->
-    expect(advent22('9 4 7 3')).to.equal(3)
+    expect( advent22 '9 4 7 3' ).to.equal 3
 
   it 'should return 2 when input is 3 8 6 5', ->
-    expect(advent22('3 8 6 5')).to.equal(2)
+    expect( advent22 '3 8 6 5' ).to.equal 2
 
   it 'should return 15 when input is input from advent', ->
     input = '''
@@ -52,7 +52,7 @@ describe 'advent 2.2', ->
     9 4 7 3
     3 8 6 5
     '''
-    expect(advent22(input)).to.equal 9
+    expect( advent22 input ).to.equal 9
 
 advent21 = (captcha) ->
   return 0 unless captcha
@@ -69,22 +69,29 @@ advent21 = (captcha) ->
     sum += biggest - smallest
   return sum
 
+divideIfGreater = (a,b) ->
+  if a > b
+    return divide a, b
+  else
+    return divide b, a
+
+
+divide = (a, b) ->
+  return a / b if a % b == 0
+  0
+
 advent22 = (captcha) ->
   return 0 unless captcha
   sum = 0
   lines = captcha.split '\n'
   for line in lines
-    numbers = line.split ' '
+    numbers = line.split(' ').map (number) -> parseInt number
     for number, i in numbers
-      for number2, j in numbers
-        if i < j
-          num1 = parseInt number
-          num2 = parseInt number2
-          if num1 > num2
-            sum += num1 / num2 if num1 % num2 == 0
-          else
-            sum += num2 / num1 if num2 % num1 == 0
+      for number2, j in numbers when i < j
+        sum += divideIfGreater number, number2
   return sum
+
+
 
 puzzleInput = '''
 4168 3925 858 2203 440 185 2886 160 1811 4272 4333 2180 174 157 361 1555
