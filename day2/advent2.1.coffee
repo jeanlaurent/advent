@@ -52,14 +52,14 @@ describe 'advent 2.2', ->
     9 4 7 3
     3 8 6 5
     '''
-    expect( advent22(input)).to.equal(9)
+    expect(advent22(input)).to.equal 9
 
 advent21 = (captcha) ->
   return 0 unless captcha
   sum = 0
-  lines = captcha.split("\n")
+  lines = captcha.split '\n'
   for line in lines
-    numbers = line.split(" ")
+    numbers = line.split ' '
     smallest = 9999
     biggest = -1
     for number in numbers
@@ -72,20 +72,18 @@ advent21 = (captcha) ->
 advent22 = (captcha) ->
   return 0 unless captcha
   sum = 0
-  lines = captcha.split("\n")
+  lines = captcha.split '\n'
   for line in lines
-    numbers = line.split(" ")
+    numbers = line.split ' '
     for number, i in numbers
       for number2, j in numbers
         if i < j
-          num1 = parseInt(number)
-          num2 = parseInt(number2)
+          num1 = parseInt number
+          num2 = parseInt number2
           if num1 > num2
-            if num1 % num2 == 0
-              sum += num1 / num2
+            sum += num1 / num2 if num1 % num2 == 0
           else
-            if num2 % num1 == 0
-              sum += num2 / num1
+            sum += num2 / num1 if num2 % num1 == 0
   return sum
 
 puzzleInput = '''
