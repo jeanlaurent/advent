@@ -46,8 +46,7 @@ func advent71(input string) string {
 	}
 	lefts := []string{}
 	rights := []string{}
-	lines := strings.Split(input, "\n")
-	for _, line := range lines {
+	for _, line := range strings.Split(input, "\n") {
 		indexFirstSpace := strings.Index(line, " ")
 		if indexFirstSpace != -1 {
 			word := line[0:indexFirstSpace]
@@ -56,8 +55,7 @@ func advent71(input string) string {
 		indexArrow := strings.Index(line, ">")
 		if indexArrow != -1 {
 			rightList := line[indexArrow+2 : len(line)]
-			listOfRight := strings.Split(rightList, ", ")
-			for _, right := range listOfRight {
+			for _, right := range strings.Split(rightList, ", ") {
 				rights = append(rights, right)
 			}
 		}
