@@ -3,30 +3,30 @@ package advent17;
 
 public class Advent
 {
-    int nestedGroup;
-    int groups;
-    int score;
-
-    public Advent() {
-        this.groups = 0;
-        this.score = 0;
-        this.nestedGroup = 0;
-    }
+    int nestedGroup = 0;
+    int groups = 0;
+    int score = 0;
+    int characters = 0;
 
     public void parse(String line) {
         boolean inGarbage = false;
+        boolean openingGarbage;
         for (int i = 0; i < line.length(); i++) {
+            openingGarbage = false;
             if (line.charAt(i) == '!') {
                 i++;
                 continue;
             }
             if (line.charAt(i) == '<') {
+                openingGarbage = !inGarbage;
                 inGarbage = true;
             }
             if (line.charAt(i) == '>') {
                 inGarbage = false;
             }
-            if (!inGarbage) {
+            if ((inGarbage) && (!openingGarbage)) {
+                characters++;
+            } else {
                 if (line.charAt(i) == '{') {
                     this.nestedGroup++;
                     score += nestedGroup;

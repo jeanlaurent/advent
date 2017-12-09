@@ -17,6 +17,7 @@ public class AdventTest {
         advent.parse("{}");
         assertThat(advent.groups).isEqualTo(1);
         assertThat(advent.score).isEqualTo(1);
+        assertThat(advent.characters).isEqualTo(0);
     }
 
     @Test
@@ -25,6 +26,7 @@ public class AdventTest {
         advent.parse("{{{}}}");
         assertThat(advent.groups).isEqualTo(3);
         assertThat(advent.score).isEqualTo(6);
+        assertThat(advent.characters).isEqualTo(0);
     }
 
     @Test
@@ -33,6 +35,7 @@ public class AdventTest {
         advent.parse("{{},{}}");
         assertThat(advent.groups).isEqualTo(3);
         assertThat(advent.score).isEqualTo(5);
+        assertThat(advent.characters).isEqualTo(0);
     }
 
     @Test
@@ -41,6 +44,7 @@ public class AdventTest {
         advent.parse("{{{},{},{{}}}}");
         assertThat(advent.groups).isEqualTo(6);
         assertThat(advent.score).isEqualTo(16);
+        assertThat(advent.characters).isEqualTo(0);
     }
 
     @Test
@@ -48,6 +52,7 @@ public class AdventTest {
         Advent advent = new Advent();
         advent.parse("{<{},{},{{}}>}");
         assertThat(advent.groups).isEqualTo(1);
+        assertThat(advent.characters).isEqualTo(10);
     }
 
     @Test
@@ -56,6 +61,7 @@ public class AdventTest {
         advent.parse("{<a>,<a>,<a>,<a>}");
         assertThat(advent.groups).isEqualTo(1);
         assertThat(advent.score).isEqualTo(1);
+        assertThat(advent.characters).isEqualTo(4);
     }
 
     @Test
@@ -93,6 +99,43 @@ public class AdventTest {
         String input = new String(Files.readAllBytes(new File("./input.txt").toPath()));
         advent.parse(input);
         assertThat(advent.score).isEqualTo(14190);
+        assertThat(advent.characters).isEqualTo(7053);
     }
+
+    @Test
+    public void count_garbage() {
+        Advent advent = new Advent();
+        advent.parse("<{!>}>");
+        assertThat(advent.characters).isEqualTo(2);
+    }
+
+    @Test
+    public void count_garbage_with_skips() {
+        Advent advent = new Advent();
+        advent.parse("<!!>");
+        assertThat(advent.characters).isEqualTo(0);
+    }
+
+    @Test
+    public void count_garbage_with_more_skips() {
+        Advent advent = new Advent();
+        advent.parse("<!!!>>");
+        assertThat(advent.characters).isEqualTo(0);
+    }
+
+    @Test
+    public void count_garbage_with_lots_of_opening() {
+        Advent advent = new Advent();
+        advent.parse("<<<<>");
+        assertThat(advent.characters).isEqualTo(3);
+    }
+
+    @Test
+    public void count_garbage_with_weird_string() {
+        Advent advent = new Advent();
+        advent.parse("<{o\"i!a,<{i<a>");
+        assertThat(advent.characters).isEqualTo(10);
+    }
+
 
 }
