@@ -9,3 +9,7 @@ http://adventofcode.com/2017
 * day 7 : go
 * day 8 : go
 * day 9 : java
+* day 10 : java
+* day 11 : (skipped)
+* day 12 : java
+* day 13 : java

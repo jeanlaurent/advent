@@ -4,7 +4,7 @@ public class Advent
 {
     int nestedGroup = 0;
     int groups = 0;
-    int score = 0;  
+    int score = 0;
     int characters = 0;
 
     public void parse(String line) {
