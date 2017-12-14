@@ -31,10 +31,6 @@ public class Advent
         }
         numbers.addAll(Arrays.asList(17, 31, 73, 47, 23));
         lengths = toIntArray(numbers);
-        for (int i = 0; i < lengths.length; i++) {
-            System.out.print(lengths[i] + " ");
-        }
-        System.out.println();
     }
 
     // java we love you... not
@@ -79,16 +75,14 @@ public class Advent
                 blocks[block] ^= list[block*16 + i];
             }
         }
-        StringBuilder hash = new StringBuilder(new String());
-        for (int i = 0; i <blocks.length; i++) {
-            String hex = Integer.toHexString(blocks[i]);
+        StringBuilder hash = new StringBuilder("");
+        for (int block : blocks) {
+            String hex = Integer.toHexString(block);
             if (hex.length() == 1) {
                 hex = "0" + hex;
             }
             hash.append(hex);
         }
-        System.out.println(Arrays.toString(blocks));
-        System.out.println(hash);
         return hash.toString();
     }
 
