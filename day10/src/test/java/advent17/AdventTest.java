@@ -60,13 +60,42 @@ public class AdventTest {
 
     @Test
     public void part1() {
+        int[] lengths = {183,0,31,146,254,240,223,150,2,206,161,1,255,232,199,88};
+        Advent advent = new Advent(_256List(), lengths);
+        assertThat(advent.run()).isEqualTo(15990);
+    }
+
+    @Test
+    public void part2_emptystring() {
+        assertThat((new Advent(_256List(),"")).part2()).isEqualTo("a2582a3a0e66e6e86e3812dcb672a272");
+    }
+
+    @Test
+    public void part2_aoc() {
+        assertThat((new Advent(_256List(),"AoC 2017")).part2()).isEqualTo("33efeb34ea91902bb2f59c9920caa6cd");
+    }
+
+    @Test
+    public void part2_123() {
+        assertThat((new Advent(_256List(),"1,2,3")).part2()).isEqualTo("3efbe78a8d82f29979031a4aa0b16a9d");
+    }
+
+    @Test
+    public void part2_124() {
+        assertThat((new Advent(_256List(),"1,2,4")).part2()).isEqualTo("63960835bcdc130f0b66d7ff4f6a5a8e");
+    }
+
+    @Test
+    public void part2() {
+        assertThat(new Advent(_256List(),"183,0,31,146,254,240,223,150,2,206,161,1,255,232,199,88").part2()).isEqualTo("90adb097dd55dea8305c900372258ac6");;
+    }
+
+    int[] _256List() {
         int[] list = new int[256];
         for (int i = 0; i < 256; i++) {
             list[i] = i;
         }
-        int[] lengths = {183,0,31,146,254,240,223,150,2,206,161,1,255,232,199,88};
-        Advent advent = new Advent(list, lengths);
-        assertThat(advent.run()).isEqualTo(15990);
+        return list;
     }
 
 }
