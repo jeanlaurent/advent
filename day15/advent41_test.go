@@ -10,12 +10,20 @@ func TestExample(t *testing.T) {
 	assert.Equal(t, 1, advent15(65, 8921, 5))
 }
 
+func TestExample2With5Miteration(t *testing.T) {
+	assert.Equal(t, 309, advent15step2(65, 8921, 5*million))
+}
+
 func TestExampleWith40Miteration(t *testing.T) {
 	assert.Equal(t, 588, advent15(65, 8921, 40*million))
 }
 
 func TestStep1(t *testing.T) {
 	assert.Equal(t, 600, advent15(699, 124, 40*million))
+}
+
+func TestStep2(t *testing.T) {
+	assert.Equal(t, 313, advent15step2(699, 124, 5*million))
 }
 
 func TestGeneratorA(t *testing.T) {
