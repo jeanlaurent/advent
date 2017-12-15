@@ -13,3 +13,5 @@ http://adventofcode.com/2017
 * day 11 : (skipped)
 * day 12 : java
 * day 13 : java
+* day 14 : java
+* day 15 : go
