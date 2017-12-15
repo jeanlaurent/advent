@@ -36,7 +36,7 @@ func TestStep1(t *testing.T) {
 	if err != nil {
 		fmt.Print(err)
 	}
-	assert.Equal(t, 682, advent11(string(text)))
+	assert.Equal(t, 681, advent11(string(text)))
 }
 
 func cancelEachOther(dc map[string]int, el1 string, el2 string) {
@@ -53,8 +53,10 @@ func replace(dc map[string]int, el1 string, el2 string, el3 string) {
 }
 
 func advent11(input string) int {
-	directions := strings.Split(input, ",")
+	return reduce(strings.Split(input, ","))
+}
 
+func reduce(directions []string) int {
 	directionCount := map[string]int{}
 	directionCount["ne"] = count(directions, "ne")
 	directionCount["sw"] = count(directions, "sw")
@@ -63,23 +65,23 @@ func advent11(input string) int {
 	directionCount["n"] = count(directions, "n")
 	directionCount["s"] = count(directions, "s")
 
-	replace(directionCount, "n", "se", "ne")
-	replace(directionCount, "n", "sw", "nw")
-	replace(directionCount, "s", "ne", "se")
-	replace(directionCount, "s", "nw", "sw")
-	replace(directionCount, "ne", "nw", "n")
-	replace(directionCount, "se", "sw", "s")
-
 	cancelEachOther(directionCount, "n", "s")
 	cancelEachOther(directionCount, "ne", "sw")
 	cancelEachOther(directionCount, "nw", "se")
 
-	count := 1
-	for k, v := range directionCount {
-		fmt.Println(k, v)
+	replace(directionCount, "ne", "nw", "n")
+	replace(directionCount, "se", "sw", "s")
+	replace(directionCount, "se", "n", "ne")
+	replace(directionCount, "sw", "n", "nw")
+	replace(directionCount, "s", "ne", "se")
+	replace(directionCount, "s", "nw", "sw")
+
+	count := 0
+	for _, v := range directionCount {
 		count += v
 	}
 	return count
+
 }
 
 func count(directions []string, targetDirection string) int {
