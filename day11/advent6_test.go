@@ -36,7 +36,7 @@ func TestStep1(t *testing.T) {
 	if err != nil {
 		fmt.Print(err)
 	}
-	assert.Equal(t, 89, advent11(string(text)))
+	assert.Equal(t, 682, advent11(string(text)))
 }
 
 func cancelEachOther(dc map[string]int, el1 string, el2 string) {
@@ -63,18 +63,18 @@ func advent11(input string) int {
 	directionCount["n"] = count(directions, "n")
 	directionCount["s"] = count(directions, "s")
 
+	replace(directionCount, "n", "se", "ne")
+	replace(directionCount, "n", "sw", "nw")
+	replace(directionCount, "s", "ne", "se")
+	replace(directionCount, "s", "nw", "sw")
+	replace(directionCount, "ne", "nw", "n")
+	replace(directionCount, "se", "sw", "s")
+
+	cancelEachOther(directionCount, "n", "s")
 	cancelEachOther(directionCount, "ne", "sw")
 	cancelEachOther(directionCount, "nw", "se")
-	cancelEachOther(directionCount, "n", "s")
 
-	replace(directionCount, "ne", "s", "se")
-	replace(directionCount, "ne", "nw", "n")
-	replace(directionCount, "nw", "s", "sw")
-	replace(directionCount, "se", "n", "ne")
-	replace(directionCount, "se", "sw", "s")
-	replace(directionCount, "sw", "n", "nw")
-
-	count := 0
+	count := 1
 	for k, v := range directionCount {
 		fmt.Println(k, v)
 		count += v
