@@ -1,17 +1,18 @@
 http://adventofcode.com/2017
 
-* day 1 : javascript
-* day 2 : coffeescript
-* day 3 : coffeescript
-* day 4 : go
-* day 5 : go
-* day 6 : go
-* day 7 : go
-* day 8 : go
-* day 9 : java
+* day 01 : javascript
+* day 02 : coffeescript
+* day 03 : coffeescript
+* day 04 : go
+* day 05 : go
+* day 06 : go
+* day 07 : go
+* day 08 : go
+* day 09 : java
 * day 10 : java
-* day 11 : (skipped)
+* day 11 : go
 * day 12 : java
 * day 13 : java
 * day 14 : java
 * day 15 : go
+* day 16 : go
