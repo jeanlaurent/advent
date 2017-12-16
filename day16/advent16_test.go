@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bytes"
 	"fmt"
 	"io/ioutil"
 	"strconv"
@@ -40,13 +41,13 @@ func TestPart1(t *testing.T) {
 	assert.Equal(t, "doeaimlbnpjchfkg", advent16("abcdefghijklmnop", string(bytes[0:len(bytes)-1])))
 }
 
-// func TestPart2(t *testing.T) {
-// 	bytes, err := ioutil.ReadFile("./input.txt")
-// 	if err != nil {
-// 		fmt.Print(err)
-// 	}
-// 	assert.Equal(t, "doeaimlbnpjchfkg", advent16Part2("abcdefghijklmnop", string(bytes[0:len(bytes)-1]), 1000000000))
-// }
+func TestPart2(t *testing.T) {
+	bytes, err := ioutil.ReadFile("./input.txt")
+	if err != nil {
+		fmt.Print(err)
+	}
+	assert.Equal(t, "doeaimlbnpjchfkg", advent16Part2("abcdefghijklmnop", string(bytes[0:len(bytes)-1]), 1000000000))
+}
 
 func advent16(dancers string, danceMovesAsString string) string {
 	return advent16Part2(dancers, danceMovesAsString, 1)
@@ -60,8 +61,8 @@ type Move struct {
 	orderType int
 	left      int
 	right     int
-	leftChar  string
-	rightChar string
+	leftChar  byte
+	rightChar byte
 }
 
 func parseInput(danceMovesAsString string) []Move {
@@ -89,7 +90,7 @@ func parseInput(danceMovesAsString string) []Move {
 		}
 		if string(stringMove[0]) == "p" {
 			values := strings.Split(string(stringMove[1:]), "/")
-			moves[index] = Move{orderType: partner, leftChar: values[0], rightChar: values[1]}
+			moves[index] = Move{orderType: partner, leftChar: values[0][0], rightChar: values[1][0]}
 		}
 	}
 	return moves
@@ -97,9 +98,10 @@ func parseInput(danceMovesAsString string) []Move {
 
 func advent16Part2(dancers string, danceMovesAsString string, iteration int) string {
 	moves := parseInput(danceMovesAsString)
-	dancersArray := make([]string, len(dancers))
+	dancersArray := make([]byte, len(dancers))
+	previousDancersArray := dancersArray
 	for index := 0; index < len(dancers); index++ {
-		dancersArray[index] = string(dancers[index])
+		dancersArray[index] = dancers[index]
 	}
 	start := time.Now()
 	spot := start
@@ -114,7 +116,7 @@ func advent16Part2(dancers string, danceMovesAsString string, iteration int) str
 		for _, move := range moves {
 			switch move.orderType {
 			case spin:
-				newDancersArray := make([]string, len(dancers))
+				newDancersArray := make([]byte, len(dancers))
 				for index := 0; index < len(dancers); index++ {
 					newDancersArray[(index+move.left)%len(dancers)] = dancersArray[index]
 				}
@@ -127,21 +129,30 @@ func advent16Part2(dancers string, danceMovesAsString string, iteration int) str
 				swap(dancersArray, left, right)
 			}
 		}
+		if bytes.Equal(dancersArray, previousDancersArray) {
+			fmt.Println("equality at cycle", loopCount)
+		}
+		previousDancersArray = dancersArray
 	}
-	newDancers := ""
-	for index := range dancersArray {
-		newDancers += dancersArray[index]
-	}
-	return newDancers
+	return string(dancersArray)
 }
 
-func swap(slice []string, left int, right int) {
+func equals(a []string, b []string) bool {
+	for i, v := range a {
+		if v != b[i] {
+			return false
+		}
+	}
+	return true
+}
+
+func swap(slice []byte, left int, right int) {
 	swap := slice[right]
 	slice[right] = slice[left]
 	slice[left] = swap
 }
 
-func find(slice []string, target string) int {
+func find(slice []byte, target byte) int {
 	for index, element := range slice {
 		if target == element {
 			return index
