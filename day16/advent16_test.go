@@ -6,6 +6,7 @@ import (
 	"strconv"
 	"strings"
 	"testing"
+	"time"
 
 	"github.com/stretchr/testify/assert"
 )
@@ -52,22 +53,34 @@ func advent16(dancers string, danceMovesAsString string) string {
 }
 
 func advent16Part2(dancers string, danceMovesAsString string, iteration int) string {
-	moves := strings.Split(danceMovesAsString, ",")
+	moves := strings.Split(danceMovesAsString, ",") // parse moves only once
 	dancersArray := make([]string, len(dancers))
+	for index := 0; index < len(dancers); index++ {
+		dancersArray[index] = string(dancers[index])
+	}
+	start := time.Now()
+	spot := start
 	for loopCount := 0; loopCount < iteration; loopCount++ {
-		if (loopCount%1000 == 0) && loopCount > 0 {
-			fmt.Println(loopCount)
+		if loopCount%1000 == 0 && loopCount != 0 {
+			diff := time.Since(spot)
+			diffStart := time.Since(start)
+			fmt.Println(loopCount, diff, diffStart)
+			spot = time.Now()
 		}
+
 		for _, move := range moves {
 			if string(move[0]) == "s" {
+				// work on a copy of the dancers array
 				span, err := strconv.Atoi(string(move[1:]))
 				if err != nil {
 					fmt.Println(err)
 					return "error"
 				}
+				newDancersArray := make([]string, len(dancers))
 				for index := 0; index < len(dancers); index++ {
-					dancersArray[(index+span)%len(dancers)] = string(dancers[index])
+					newDancersArray[(index+span)%len(dancers)] = dancersArray[index]
 				}
+				dancersArray = newDancersArray
 			}
 			if string(move[0]) == "x" {
 				values := strings.Split(string(move[1:]), "/")
@@ -81,36 +94,34 @@ func advent16Part2(dancers string, danceMovesAsString string, iteration int) str
 					fmt.Println(err)
 					return "error"
 				}
-				for index := 0; index < len(dancers); index++ {
-					if index == left {
-						dancersArray[index] = string(dancers[right])
-					} else if index == right {
-						dancersArray[index] = string(dancers[left])
-					} else {
-						dancersArray[index] = string(dancers[index])
-					}
-				}
+				// dont copy just swap the element
+				swap := dancersArray[right]
+				dancersArray[right] = dancersArray[left]
+				dancersArray[left] = swap
 			}
 			if string(move[0]) == "p" {
 				values := strings.Split(string(move[1:]), "/")
-				left := strings.Index(dancers, string(values[0]))
-				right := strings.Index(dancers, string(values[1]))
-				for index := 0; index < len(dancers); index++ {
-					if index == left {
-						dancersArray[index] = string(dancers[right])
-					} else if index == right {
-						dancersArray[index] = string(dancers[left])
-					} else {
-						dancersArray[index] = string(dancers[index])
-					}
-				}
+				left := find(dancersArray, string(values[0]))
+				right := find(dancersArray, string(values[1]))
+				swap := dancersArray[right]
+				dancersArray[right] = dancersArray[left]
+				dancersArray[left] = swap
 			}
-			newDancers := ""
-			for index := range dancersArray {
-				newDancers += dancersArray[index]
-			}
-			dancers = newDancers
 		}
 	}
-	return dancers
+	// do this only once
+	newDancers := ""
+	for index := range dancersArray {
+		newDancers += dancersArray[index]
+	}
+	return newDancers
+}
+
+func find(slice []string, target string) int {
+	for index, element := range slice {
+		if target == element {
+			return index
+		}
+	}
+	return -1
 }
