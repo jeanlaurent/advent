@@ -39,6 +39,14 @@ func TestStep1(t *testing.T) {
 	assert.Equal(t, 681, advent11(string(text)))
 }
 
+func TestStep2(t *testing.T) {
+	text, err := ioutil.ReadFile("./input.txt")
+	if err != nil {
+		fmt.Print(err)
+	}
+	assert.Equal(t, 681, advent11Part2(string(text)))
+}
+
 func cancelEachOther(dc map[string]int, el1 string, el2 string) {
 	count := min(dc[el1], dc[el2])
 	dc[el1] -= count
@@ -54,6 +62,22 @@ func replace(dc map[string]int, el1 string, el2 string, el3 string) {
 
 func advent11(input string) int {
 	return reduce(strings.Split(input, ","))
+}
+
+func advent11Part2(input string) int {
+	directions := strings.Split(input, ",")
+	maxLength := 0
+	maxIteration := len(directions)
+	// fmt.Println(len(directions))
+	for index := 0; index < maxIteration; index++ {
+		length := reduce(directions)
+		// fmt.Println(length, len(directions))
+		if length > maxLength {
+			maxLength = length
+		}
+		directions = directions[0:index]
+	}
+	return maxLength
 }
 
 func reduce(directions []string) int {
@@ -73,8 +97,8 @@ func reduce(directions []string) int {
 	replace(directionCount, "se", "sw", "s")
 	replace(directionCount, "se", "n", "ne")
 	replace(directionCount, "sw", "n", "nw")
-	replace(directionCount, "s", "ne", "se")
-	replace(directionCount, "s", "nw", "sw")
+	replace(directionCount, "ne", "s", "se")
+	replace(directionCount, "sw", "s", "sw")
 
 	count := 0
 	for _, v := range directionCount {
