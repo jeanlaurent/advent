@@ -7,7 +7,6 @@ import (
 	"strconv"
 	"strings"
 	"testing"
-	"time"
 
 	"github.com/stretchr/testify/assert"
 )
@@ -46,7 +45,7 @@ func TestPart2(t *testing.T) {
 	if err != nil {
 		fmt.Print(err)
 	}
-	assert.Equal(t, "doeaimlbnpjchfkg", advent16Part2("abcdefghijklmnop", string(bytes[0:len(bytes)-1]), 1000000000))
+	assert.Equal(t, "agndefjhibklmocp", advent16Part2("abcdefghijklmnop", string(bytes[0:len(bytes)-1]), 1000000000))
 }
 
 func advent16(dancers string, danceMovesAsString string) string {
@@ -99,20 +98,11 @@ func parseInput(danceMovesAsString string) []Move {
 func advent16Part2(dancers string, danceMovesAsString string, iteration int) string {
 	moves := parseInput(danceMovesAsString)
 	dancersArray := make([]byte, len(dancers))
-	previousDancersArray := dancersArray
+	seen := [][]byte{}
 	for index := 0; index < len(dancers); index++ {
 		dancersArray[index] = dancers[index]
 	}
-	start := time.Now()
-	spot := start
 	for loopCount := 0; loopCount < iteration; loopCount++ {
-		if loopCount%1000 == 0 && loopCount != 0 {
-			diff := time.Since(spot)
-			diffStart := time.Since(start)
-			fmt.Println(loopCount, diff, diffStart)
-			spot = time.Now()
-		}
-
 		for _, move := range moves {
 			switch move.orderType {
 			case spin:
@@ -129,21 +119,22 @@ func advent16Part2(dancers string, danceMovesAsString string, iteration int) str
 				swap(dancersArray, left, right)
 			}
 		}
-		if bytes.Equal(dancersArray, previousDancersArray) {
-			fmt.Println("equality at cycle", loopCount)
+		if exist(seen, dancersArray) {
+			// we found a cycle at loopCount.
+			return string(seen[iteration%loopCount-1])
 		}
-		previousDancersArray = dancersArray
+		seen = append(seen, dancersArray)
 	}
 	return string(dancersArray)
 }
 
-func equals(a []string, b []string) bool {
-	for i, v := range a {
-		if v != b[i] {
-			return false
+func exist(seen [][]byte, slice []byte) bool {
+	for _, past := range seen {
+		if bytes.Equal(past, slice) {
+			return true
 		}
 	}
-	return true
+	return false
 }
 
 func swap(slice []byte, left int, right int) {
