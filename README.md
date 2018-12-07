@@ -3,6 +3,11 @@ http://adventofcode.com/
 * 2018
   * day 01 : go
   * day 02 : go
+  * day 03 : go
+  * day 04 : go
+  * day 05 : n/a
+  * day 06 : n/a
+  * day 07 : go
 * 2017
   * day 01 : javascript
   * day 02 : coffeescript
