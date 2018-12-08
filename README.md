@@ -5,7 +5,7 @@ http://adventofcode.com/
   * day 02 : go
   * day 03 : go
   * day 04 : go
-  * day 05 : n/a
+  * day 05 : javascript
   * day 06 : n/a
   * day 07 : go
   * day 08 : javascript
