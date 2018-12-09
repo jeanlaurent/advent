@@ -9,6 +9,7 @@ http://adventofcode.com/
   * day 06 : n/a
   * day 07 : go
   * day 08 : javascript
+  * day 09 : ~javascript~ Finally go 
 * 2017
   * day 01 : javascript
   * day 02 : coffeescript
