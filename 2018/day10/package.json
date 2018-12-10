@@ -1,0 +1,11 @@
+{
+  "name": "advent-10",
+  "version": "1.0.0",
+  "main": "day10.js",
+  "repository": "git@github.com:jeanlaurent/advent.git",
+  "author": "Jean-Laurent de Morlhon <jeanlaurent@morlhon.net>",
+  "license": "MIT",
+  "scripts": {
+    "day":"node ./day10.js"
+  }
+}
