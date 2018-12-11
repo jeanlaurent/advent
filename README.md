@@ -6,7 +6,7 @@ http://adventofcode.com/
   * day 03 : go
   * day 04 : go
   * day 05 : javascript
-  * day 06 : n/a
+  * day 06 : javascript
   * day 07 : go
   * day 08 : javascript
   * day 09 : ~javascript~ Finally go, ptr ftw !
