@@ -9,9 +9,9 @@ http://adventofcode.com/
   * day 06 : n/a
   * day 07 : go
   * day 08 : javascript
-  * day 09 : ~javascript~ 
-  Finally go 
+  * day 09 : ~javascript~ Finally go, ptr ftw !
   * day 10 : javascript
+  * day 11 : javascript
 * 2017
   * day 01 : javascript
   * day 02 : coffeescript
