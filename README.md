@@ -12,6 +12,8 @@ http://adventofcode.com/
   * day 09 : ~javascript~ Finally go, ptr ftw !
   * day 10 : javascript
   * day 11 : javascript
+  * day 12 : n/a
+  * day 13 : javascript
 * 2017
   * day 01 : javascript
   * day 02 : coffeescript
