@@ -39,7 +39,7 @@ func (n *numbers) findForStep2(goal string) {
 }
 
 func (n *numbers) findForStep1(goal int) {
-	fmt.Print(goal, " --> ")
+	fmt.Print("step1 ", goal, " --> ")
 	for index := goal; index < goal+10; index++ {
 		fmt.Print(n.array[index])
 	}
