@@ -15,6 +15,10 @@ http://adventofcode.com/
   * day 12 : n/a
   * day 13 : javascript
   * day 14 : go
+  * day 15 : javascript
+  * day 16 : n/a
+  * day 17 : n/a
+  * day 18 : javascript
 * 2017
   * day 01 : javascript
   * day 02 : coffeescript
