@@ -73,6 +73,7 @@ func gravityAssist(intcodes []int64) []int64 {
 			intcodes[intcodes[index+3]] = value
 		} else {
 			fmt.Println("invalid intcode", intcodes[index], "at", index)
+			os.Exit(-1)
 		}
 		index += 4
 	}
