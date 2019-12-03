@@ -20,9 +20,9 @@ func newCoord(x, y int) coord {
 
 func main() {
 	input := load("./input.txt")
-	// input := "R8,U5,L5,D3\nU7,R6,D4,L4"
-	//input := "R75,D30,R83,U83,L12,D49,R71,U7,L72\nU62,R66,U55,R34,D71,R55,D58,R83"
-	//input := "R98,U47,R26,D63,R33,U87,L62,D20,R33,U53,R51\nU98,R91,D20,R16,D67,R40,U7,R15,U6,R7"
+	//input := "R8,U5,L5,D3\nU7,R6,D4,L4" //30 steps
+	//input := "R75,D30,R83,U83,L12,D49,R71,U7,L72\nU62,R66,U55,R34,D71,R55,D58,R83" //610 steps
+	//input := "R98,U47,R26,D63,R33,U87,L62,D20,R33,U53,R51\nU98,R91,D20,R16,D67,R40,U7,R15,U6,R7" //410 steps
 
 	wires := [][]coord{}
 	for _, line := range strings.Split(input, "\n") {
@@ -62,12 +62,12 @@ func main() {
 		wires = append(wires, wire)
 	}
 	fmt.Println(wires)
-	match := []coord{}
+	matches := []coord{}
 	minDistance := 99999
 	for index := 0; index < len(wires[0]); index++ {
 		for index2 := 0; index2 < len(wires[1]); index2++ {
 			if wires[0][index].x == wires[1][index2].x && wires[0][index].y == wires[1][index2].y {
-				match = append(match, wires[0][index])
+				matches = append(matches, wires[0][index])
 				distance := int(math.Abs(float64(wires[0][index].x-1)) + math.Abs(float64(wires[0][index].y-1)))
 				if distance < minDistance {
 					minDistance = distance
@@ -77,8 +77,30 @@ func main() {
 	}
 
 	fmt.Println("matches")
-	fmt.Println(match)
+	fmt.Println(matches)
 	fmt.Println("step 1 -->", minDistance)
+
+	minSteps := 999999
+	for index := 0; index < len(matches); index++ {
+		steps0 := findStepFor(wires[0], matches[index])
+		steps1 := findStepFor(wires[1], matches[index])
+		steps := steps0 + steps1
+		fmt.Println(matches[index], steps0, steps1, steps)
+		if steps < minSteps {
+			minSteps = steps
+		}
+	}
+	fmt.Println("step 2 -->", minSteps)
+}
+
+func findStepFor(wire []coord, match coord) int {
+	index := 0
+	for {
+		if wire[index].x == match.x && wire[index].y == match.y {
+			return index + 1 // +1 because we don't have origin (x:1,y:1) in the wire.
+		}
+		index++
+	}
 }
 
 func load(filename string) string {
