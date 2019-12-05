@@ -9,14 +9,14 @@ import (
 	"strings"
 )
 
-// 3,0,4,0,99
-// 1002,4,3,4,33
-
 func main() {
+	fmt.Println("step1")
 	intcodes := loadAndParse()
-	//intcodes := []int{3, 0, 4, 0, 99}
-	// intcodes := []int{1002, 4, 3, 4, 33}
 	diagnostic(intcodes, 1)
+
+	fmt.Println("step2")
+	intcodes = loadAndParse()
+	diagnostic(intcodes, 5)
 }
 
 func diagnostic(intcodes []int, input int) []int {
@@ -33,20 +33,56 @@ func diagnostic(intcodes []int, input int) []int {
 			param2 = getDigit(intcodes[index], 4)
 		}
 		switch opcode {
-		case 1:
-			value := getValueOfPointer(intcodes, index, param1, intcodes[index+1]) + getValueOfPointer(intcodes, index, param2, intcodes[index+2])
+		case 1: // addition
+			firstParameter := getValueOfPointer(intcodes, param1, intcodes[index+1])
+			secondParameter := getValueOfPointer(intcodes, param2, intcodes[index+2])
+			value := firstParameter + secondParameter
 			intcodes[intcodes[index+3]] = value
 			index += 4
-		case 2:
-			value := getValueOfPointer(intcodes, index, param1, intcodes[index+1]) * getValueOfPointer(intcodes, index, param2, intcodes[index+2])
+		case 2: // multiplication
+			firstParameter := getValueOfPointer(intcodes, param1, intcodes[index+1])
+			secondParameter := getValueOfPointer(intcodes, param2, intcodes[index+2])
+			value := firstParameter * secondParameter
 			intcodes[intcodes[index+3]] = value
 			index += 4
-		case 3:
+		case 3: // store input
 			intcodes[intcodes[index+1]] = input
 			index += 2
-		case 4:
-			fmt.Println(intcodes[intcodes[index+1]])
+		case 4: // output
+			fmt.Println(getValueOfPointer(intcodes, param1, intcodes[index+1]))
 			index += 2
+		case 5: // jump if true
+			condition := getValueOfPointer(intcodes, param1, intcodes[index+1])
+			if condition != 0 {
+				index = getValueOfPointer(intcodes, param2, intcodes[index+2])
+			} else {
+				index += 3
+			}
+		case 6: // jump if false
+			condition := getValueOfPointer(intcodes, param1, intcodes[index+1])
+			if condition == 0 {
+				index = getValueOfPointer(intcodes, param2, intcodes[index+2])
+			} else {
+				index += 3
+			}
+		case 7: // less than
+			firstParameter := getValueOfPointer(intcodes, param1, intcodes[index+1])
+			secondParameter := getValueOfPointer(intcodes, param2, intcodes[index+2])
+			if firstParameter < secondParameter {
+				intcodes[intcodes[index+3]] = 1
+			} else {
+				intcodes[intcodes[index+3]] = 0
+			}
+			index += 4
+		case 8: // equal than
+			firstParameter := getValueOfPointer(intcodes, param1, intcodes[index+1])
+			secondParameter := getValueOfPointer(intcodes, param2, intcodes[index+2])
+			if firstParameter == secondParameter {
+				intcodes[intcodes[index+3]] = 1
+			} else {
+				intcodes[intcodes[index+3]] = 0
+			}
+			index += 4
 		case 99:
 			return intcodes
 		default:
@@ -57,7 +93,7 @@ func diagnostic(intcodes []int, input int) []int {
 
 }
 
-func getValueOfPointer(intcodes []int, index int, param int, value int) int {
+func getValueOfPointer(intcodes []int, param int, value int) int {
 	if param == 0 {
 		return intcodes[value]
 	}
