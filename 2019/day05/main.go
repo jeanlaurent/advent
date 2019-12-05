@@ -32,9 +32,6 @@ func diagnostic(intcodes []int, input int) []int {
 		if intcodes[index] > 999 {
 			param2 = getDigit(intcodes[index], 4)
 		}
-		if intcodes[index] == 99 {
-			return intcodes
-		}
 		switch opcode {
 		case 1:
 			value := getValueOfPointer(intcodes, index, param1, intcodes[index+1]) + getValueOfPointer(intcodes, index, param2, intcodes[index+2])
