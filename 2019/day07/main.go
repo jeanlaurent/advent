@@ -57,14 +57,11 @@ func diagnostic(intcodes []int, input []int) ([]int, int) {
 			intcodes[intcodes[index+3]] = value
 			index += 4
 		case 3: // store input
-			fmt.Println("using input", input[indexInput])
 			intcodes[intcodes[index+1]] = input[indexInput]
 			indexInput++
 			index += 2
 		case 4: // output
-			//output += fmt.Sprint(getValueOfPointer(intcodes, param1, intcodes[index+1]))
 			output = getValueOfPointer(intcodes, param1, intcodes[index+1])
-			fmt.Println(output)
 			index += 2
 		case 5: // jump if true
 			condition := getValueOfPointer(intcodes, param1, intcodes[index+1])
@@ -99,7 +96,6 @@ func diagnostic(intcodes []int, input []int) ([]int, int) {
 			}
 			index += 4
 		case 99:
-			//return intcodes, atoi(output)
 			return intcodes, output
 		default:
 			fmt.Println("invalid intcode", intcodes[index], "at", index)
