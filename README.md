@@ -1,5 +1,9 @@
 http://adventofcode.com/
 
+* 2020
+  * day 01 : go
+  * day 02 : go
+  * day 03 : go
 * 2019
   * day 01 : go
   * day 02 : go
@@ -9,6 +13,7 @@ http://adventofcode.com/
   * day 06 : go
   * day 07 : go
   * day 08 : go
+  * day 09 : go
 * 2018
   * day 01 : go
   * day 02 : go
