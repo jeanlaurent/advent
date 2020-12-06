@@ -4,6 +4,9 @@ http://adventofcode.com/
   * day 01 : go
   * day 02 : go
   * day 03 : go
+  * day 04 : go
+  * day 05 : go
+  * day 06 : go
 * 2019
   * day 01 : go
   * day 02 : go
