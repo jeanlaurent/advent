@@ -7,6 +7,12 @@ http://adventofcode.com/
   * day 04 : go
   * day 05 : go
   * day 06 : go
+  * day 07 : go
+  * day 08 : go
+  * day 09 : go -- Using a mac with m1 starting this day which limits my ability to switch languages.
+  * day 10 : go
+  * day 11 : go
+  * day 12 : go
 * 2019
   * day 01 : go
   * day 02 : go
