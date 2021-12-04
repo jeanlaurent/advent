@@ -1,10 +1,10 @@
 http://adventofcode.com/
 
 * 2021
-  * day 01 : javascript
-  * day 02 : javascript
-  * day 03 : javascript
-  * day 04 : javascript
+  * [day 01](2021/day01) : javascript
+  * [day 02](2021/day02) : javascript
+  * [day 03](2021/day03) : javascript
+  * [day 04](2021/day04) : javascript
 * 2020
   * day 01 : go
   * day 02 : go
