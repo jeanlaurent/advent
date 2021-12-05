@@ -48,7 +48,7 @@ function runDay05(file, handleDiagonal) {
     console.log("Step1", file)
     let segments = load(file)
 
-    let max = Math.max(...[].concat(...segments)) + 1
+    let max = Math.max(...segments.flat()) + 1
     let world = Array(max).fill(0).map(y => Array(max).fill(0))
 
     segments.forEach(segment => {
@@ -95,7 +95,7 @@ function drawWorld(world, max) {
 }
 
 function computeDangerousAreas(world) {
-    return [].concat(...world).reduce((acc, value) => {
+    return world.flat().reduce((acc, value) => {
         if (value > 1) {
             return acc + 1
         }
