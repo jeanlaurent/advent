@@ -3,6 +3,8 @@ http://adventofcode.com/
 * 2022
   * [day 01](2022/day01) : go
   * [day 02](2022/day02) : go
+  * [day 03](2022/day03) : go
+  * [day 04](2022/day04) : go
 * 2021
   * [day 01](2021/day01) : javascript
   * [day 02](2021/day02) : javascript
@@ -26,7 +28,7 @@ http://adventofcode.com/
   * [day 06](2020/day06) : go
   * [day 07](2020/day07) : go
   * [day 08](2020/day08) : go
-  * [day 09](2020/day09) : go -- Using a mac with m1 starting this [day wh](2020/day01)ich limits my ability to switch languages.
+  * [day 09](2020/day09) : go -- Using a mac with m1 starting this [day 01](2020/day01)which limits my ability to switch languages.
   * [day 10](2020/day10) : go
   * [day 11](2020/day11) : go
   * [day 12](2020/day12) : go
@@ -86,4 +88,3 @@ http://adventofcode.com/
   * [day 17](2017/day17) : go
   * [day 18](2017/day18) : go
   * [day 19](2017/day19) : go
-
