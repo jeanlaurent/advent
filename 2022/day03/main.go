@@ -63,8 +63,8 @@ func step2(filename string) {
 					}
 				}
 			}
-			
 			ascii := byte(common[0])
+
 			if ascii >= byte('a') {
 				score += int(ascii - byte('a')) + 1
 			} else {
@@ -84,4 +84,13 @@ func load(filename string) string {
 		fmt.Print(err)
 	}
 	return string(text)
+}
+
+func atoi(line string) int {
+	number, err := strconv.Atoi(line)
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(-1)
+	}
+	return number
 }
