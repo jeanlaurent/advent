@@ -6,6 +6,7 @@ http://adventofcode.com/
   * [day 03](2022/day03) : go
   * [day 04](2022/day04) : go
   * [day 05](2022/day05) : go
+  * [day 06](2022/day06) : go
 * 2021
   * [day 01](2021/day01) : javascript
   * [day 02](2021/day02) : javascript
