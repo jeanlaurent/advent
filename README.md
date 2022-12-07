@@ -7,7 +7,7 @@ http://adventofcode.com/
   * [day 04](2022/day04) : go
   * [day 05](2022/day05) : go
   * [day 06](2022/day06) : go
-  * [day 07](2022/day06) : go (I like trees !)
+  * [day 07](2022/day07) : go (I like trees !)
 * 2021
   * [day 01](2021/day01) : javascript
   * [day 02](2021/day02) : javascript
@@ -91,3 +91,6 @@ http://adventofcode.com/
   * [day 17](2017/day17) : go
   * [day 18](2017/day18) : go
   * [day 19](2017/day19) : go
+* 2015
+  * [day 01](2015/day01) : go
+  * [day 02](2015/day02) : go
