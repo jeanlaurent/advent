@@ -6,10 +6,11 @@ http://adventofcode.com/
   * [day 03](2022/day03) : go
   * [day 04](2022/day04) : go
   * [day 05](2022/day05) : go
-  * [day 06](2022/day06) : go
+  * [day 06](2022/day06) : go (string manipulation)
   * [day 07](2022/day07) : go (I like trees !)
-  * [day 08](2022/day08) : go
-  * [day 09](2022/day09) : go
+  * [day 08](2022/day08) : go (relatively easy, 2d map)
+  * [day 09](2022/day09) : go (was super hard, thx to vector math)
+  * [day 10](2022/day10) : go (not easy but really fun, CRT and cycle time)
 * 2021
   * [day 01](2021/day01) : javascript
   * [day 02](2021/day02) : javascript
