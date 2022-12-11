@@ -11,6 +11,7 @@ http://adventofcode.com/
   * [day 08](2022/day08) : go (relatively easy, 2d map)
   * [day 09](2022/day09) : go (was super hard, thx to vector math)
   * [day 10](2022/day10) : go (not easy but really fun, CRT and cycle time)
+  * [day 11](2022/day11) : go (Funny, Tedious parsing, math "trick" for step2)
 * 2021
   * [day 01](2021/day01) : javascript
   * [day 02](2021/day02) : javascript
